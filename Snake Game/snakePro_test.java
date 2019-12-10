@@ -40,13 +40,10 @@ public class snakePro_test extends JPanel{
     public boolean reset = false;
     public JPanel panel;
     public int compteurOff = 1;
-    public int tableauX[] = new int[10];
-    public int tableauY[] = new int[10];
-    public int compteurTab = 0;
+   
 
     
     public static void main(String[] args) {
-    	
     	creerOeuf egg = new creerOeuf();
     	egg.creerOeuf();
     	
@@ -110,7 +107,7 @@ public class snakePro_test extends JPanel{
 		});
         
         
-        //Fenêtre 
+        //Fenetre 
         frame.setSize(20*WIDTH, 20*WIDTH); 
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
@@ -223,9 +220,7 @@ public class snakePro_test extends JPanel{
             }
     	}	
     }
-    
-    
-   
+      
     public void onKeyPressed(int keyCode) {
         if(keyCode >= 37 && keyCode <= 40) {
             if(Math.abs(keyCode - newDirection) != 2) {
@@ -240,20 +235,14 @@ public class snakePro_test extends JPanel{
         }
     }
    
-    class PartieSerpent {
+    class PartieSerpent extends AffichageConsole {
         public int x, y, direction;
         
         public PartieSerpent(int x, int y, int direction) {
             this.x = x;
             this.y = y;
             this.direction = direction;
-            tableauX[compteurTab] = x;
-            tableauY[compteurTab] = y;
-            compteurTab++;
-            if(compteurTab == 10) {
-            	compteurTab = 0;
-            }
-            affichageConsole(x, y, direction);           
+            affichageConsole(x+1, y, direction);           
         }
        
         public void move(){
@@ -306,7 +295,7 @@ public class snakePro_test extends JPanel{
         
     } 
     
-    public void affichageConsole(int x, int y, int direction){
+    /*public void affichageConsole(int x, int y, int direction){
         String directionSnake;
         switch(direction){
             case (37):
@@ -335,13 +324,9 @@ public class snakePro_test extends JPanel{
             System.out.format("score: "+score+"%n");
             System.out.format("Position du serpent (x : %d; y : %d)%n", x, y+1);
             System.out.format("Position de l'oeuf (x : %d; y : %d)%n", oeuf.x, oeuf.y+1);
-            System.out.println("Le serpent va "+ directionSnake + "\n-----------------------------------");
-            for(int i = 0; i<tableauX.length; i++ ) {
-            	System.out.println(tableauX[i] + " ;" + tableauY[i]);	
-            }
-            
+            System.out.println("Le serpent va "+ directionSnake + "\n-----------------------------------");            
         }
         refresh--;
-    }
+    }*/
  
 }
