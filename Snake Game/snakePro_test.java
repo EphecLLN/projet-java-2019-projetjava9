@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -17,8 +16,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-
 import snakeProj.creerOeuf;
+
 
  
 public class snakePro_test extends JPanel{
@@ -41,6 +40,9 @@ public class snakePro_test extends JPanel{
     public boolean reset = false;
     public JPanel panel;
     public int compteurOff = 1;
+    private Point bonus = new Point(7, 7);
+    public int compteurOeuf = 0;
+    private int offsetIncrementValueBonus = 10;
    
 
     
@@ -48,7 +50,7 @@ public class snakePro_test extends JPanel{
     	creerOeuf egg = new creerOeuf();
     	egg.creerOeuf();
     	
-    	//FenÃªtre
+    	//Fenêtre
         JFrame frame = new JFrame("Snake");
         JPanel panel = new snakePro_test();
         
@@ -82,10 +84,10 @@ public class snakePro_test extends JPanel{
         BarreDeMenu.add(Commencer);
         BarreDeMenu.add(Options);
         
-        //Bouton activer les murs ou dÃ©sactiver
+        //Bouton activer les murs ou désactiver
         JMenuItem NewGame = new JMenuItem("Nouvelle Partie");
         JMenuItem ActiverMurs = new JMenuItem("Activer les murs");
-        JMenuItem DesactiverMurs = new JMenuItem("DÃ©sactiver les murs");
+        JMenuItem DesactiverMurs = new JMenuItem("Désactiver les murs");
         Options.add(ActiverMurs);
         Options.add(DesactiverMurs);
         Commencer.add(NewGame);
@@ -153,6 +155,13 @@ public class snakePro_test extends JPanel{
                     eggEaten = true;
                     creerOeuf egg = new creerOeuf();
                     egg.creerOeuf();
+                    compteurOeuf++;
+                    offsetIncrementValue = 5;
+                    if(compteurOeuf == 7) {
+                    	creerBonus();
+                    	compteurOeuf = 0;
+                    }
+
                     score++;  
                 }
                 if(!Croissance) {
@@ -160,6 +169,10 @@ public class snakePro_test extends JPanel{
                 }
                 else {
                     Croissance = false;
+                }
+                if(head.x == bonus.x && head.y == bonus.y) {
+                	bonus = new Point(0, 0);
+                	offsetIncrementValue = offsetIncrementValueBonus;
                 }
                 
             }
@@ -211,7 +224,7 @@ public class snakePro_test extends JPanel{
     		if(gameLost>0) {
                 objet.setColor(Color.RED);
                 objet.setFont(new Font("Arial", 55, 55));
-                objet.drawString("GAME OVER", 2125/2 - objet.getFontMetrics().stringWidth("Partie terminÃ©e")/2, 1925/2);
+                objet.drawString("GAME OVER", 2125/2 - objet.getFontMetrics().stringWidth("Partie terminée")/2, 1925/2);
                 if(gameLost++<2){
                     pseudoPlayer pseudo=new pseudoPlayer();
                     pseudo.pseudoPlayer();
@@ -221,7 +234,22 @@ public class snakePro_test extends JPanel{
             }
     	}	
     }
-      
+    
+    public void creerBonus() {
+    	boolean positionAvailable = false;
+    		while(!positionAvailable){
+        		bonus.x =  rand.nextInt(12);
+        		bonus.y =  rand.nextInt(13) + 1;//------------------------------------------------------
+        		positionAvailable = true;
+                for(PartieSerpent p : snake) {
+                    if(p.x == bonus.x && p.y == bonus.y) {
+                            positionAvailable = false;
+                            break;
+                    }
+        	}
+        }
+    }
+    
     public void onKeyPressed(int keyCode) {
         if(keyCode >= 37 && keyCode <= 40) {
             if(Math.abs(keyCode - newDirection) != 2) {
@@ -300,7 +328,7 @@ public class snakePro_test extends JPanel{
         String directionSnake;
         switch(direction){
             case (37):
-                directionSnake = "Ã  gauche";
+                directionSnake = "à gauche";
                 break;
             case (38):
                 directionSnake = "en haut";
@@ -319,7 +347,7 @@ public class snakePro_test extends JPanel{
         if(refresh == 0){
         	refresh = offsetIncrementValue*3;
             if(eggEaten) {
-                System.out.format("/o/ OEUF MANGÃ‰ EN (x : %d; y : %d) \\o\\ %n" , x, y+1);
+                System.out.format("/o/ OEUF MANGÉ EN (x : %d; y : %d) \\o\\ %n" , x, y+1);
                 eggEaten = false;
             }
             System.out.format("score: "+score+"%n");

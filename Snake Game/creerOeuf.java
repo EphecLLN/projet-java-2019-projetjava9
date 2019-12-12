@@ -21,7 +21,7 @@ public class creerOeuf {
         boolean positionAvailable = false;
         while(!positionAvailable){
             oeuf.x = rand.nextInt(12);
-            oeuf.y = rand.nextInt(12) + 1;//-------------------------------------------------------
+            oeuf.y = rand.nextInt(13)+1;//permet de ne pas créer l'oeuf en dehors de la fenetre visible.(MENUBARRE)
             positionAvailable = true;
             for(PartieSerpent p : snake) {
                 if(p.x == oeuf.x && p.y == oeuf.y) {
