@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 public class AffichageConsole {
-	public void affichageConsole(int y, int x, int direction, int oeufY, int oeufX){
+	public void affichageConsole(int y, int x, int direction, int oeufY, int oeufX, int bonusX, int bonusY){
 		int sizeTableau = 20;
 		@SuppressWarnings("unchecked")
 		ArrayList<String> [][] tableau = new ArrayList[sizeTableau+2][sizeTableau+2];
@@ -64,6 +64,10 @@ public class AffichageConsole {
 				else if(oeufX == i && oeufY == j) {
 					tableau[i][j] = ligne;
 					ligne.add("*");
+				}
+				else if(bonusX == j && bonusY == i) {
+					tableau[i][j] = ligne;
+					ligne.add("@");
 				}
 				else {
 					tableau[i][j] = ligne;
