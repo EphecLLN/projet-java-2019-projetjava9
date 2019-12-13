@@ -16,7 +16,7 @@ private String idPlayer= snakeProj.pseudoPlayer.idPlayer;
 	    try {
 	      Class.forName("org.postgresql.Driver");
 	         
-	      String url = "jdbc:postgresql://localhost:1050/srvGame";
+	      String url = "jdbc:postgresql://localhost:5432/srvGame";
 	      String user = "postgres";
 	      String passwd = "moimoimoi02";
 	         
@@ -38,7 +38,7 @@ private String idPlayer= snakeProj.pseudoPlayer.idPlayer;
 		        System.out.println("score dans l'envoie "+score);
 		    	String query ="insert into savescore(id_player,score_player)Values('"+idPlayer+"',"+score+")";
 		    	String query2 ="select * savescore";
-		    	rs = st.executeQuery(query2);
+		    	rs = st.executeQuery(query);
 		    	System.out.println(rs);	
 		    } catch (Exception e) {
 		      
