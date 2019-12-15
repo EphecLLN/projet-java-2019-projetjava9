@@ -8,7 +8,8 @@ import java.util.Deque;
 
 
 public class AffichageConsole {
-	public Deque<PartieSerpent> snake = new ArrayDeque<>();
+	
+	public Deque<PartieSerpent> snake = snakeProj.snakePro_test.snake;
 	public void affichageConsole(int y, int x, int direction, int oeufY, int oeufX, int bonusX, int bonusY){
 		int sizeTableau = 20;
 		@SuppressWarnings("unchecked")

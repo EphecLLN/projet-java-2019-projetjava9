@@ -23,7 +23,7 @@ import snakeProj.creerOeuf;
 public class snakePro_test extends JPanel{
 	
     private static int WIDTH = 25;
-    public Deque<PartieSerpent> snake = new ArrayDeque<>();
+    public static Deque<PartieSerpent> snake = new ArrayDeque<>();
     //lie la variable oeuf de la classe creerOeuf
     private Point oeuf = snakeProj.creerOeuf.oeuf;
     public Random rand = new Random();
