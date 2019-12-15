@@ -1,21 +1,22 @@
 package snakeProj;
 
 import java.util.ArrayList;
+import snakeProj.snakePro_test.PartieSerpent;
+import snakeProj.snakePro_test;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 
 public class AffichageConsole {
-	public void affichageConsole(int y, int x, int direction, int oeufY, int oeufX){
+	public Deque<PartieSerpent> snake = new ArrayDeque<>();
+	public void affichageConsole(int y, int x, int direction, int oeufY, int oeufX, int bonusX, int bonusY){
 		int sizeTableau = 20;
 		@SuppressWarnings("unchecked")
-		ArrayList<String> [][] tableau = new ArrayList[sizeTableau+2][sizeTableau+2];
-		ArrayList<Integer> snakePositionX = new ArrayList<Integer>();
-		ArrayList<Integer> snakePositionY = new ArrayList<Integer>();
+		char [][] tableau = new char[sizeTableau+2][sizeTableau+2];
 		boolean writeSnake = false;
 		int k;
 		boolean nextPart = true;
 		
-		snakePositionX.add(x);
-		snakePositionY.add(y);
 		
 		switch(direction) {
 			case 37: //fleche de gauche
@@ -31,50 +32,27 @@ public class AffichageConsole {
 				x = x==sizeTableau ? 1 : ++x;
 				break;
 		}
+		for(PartieSerpent p : snake) {
+			System.out.println(p);
+		}
 		k=0;
 		for(int i=0; i<=sizeTableau; i++) {
-			ArrayList<String> ligne = new ArrayList<>();
-			ligne.clear();
-			if(nextPart) {
-				if(i==snakePositionX.get(k)) {
-					writeSnake = true;
-				}
-			}
 			for(int j=0; j<=sizeTableau; j++) {
-				if(i==0 || i==sizeTableau) {
-					tableau[i][j] = ligne;
-					ligne.add("#");
+				if(i==0 || i==sizeTableau || j==0 || j==sizeTableau) {
+					tableau[i][j] = '#';
 				}
-				else if(j==0 || j==sizeTableau) {
-					tableau[i][j] = ligne;
-					ligne.add("#");
+				else if(x==i && y==j) {
+					tableau[i][j] = 'o';
 				}
-				else if(writeSnake && j==snakePositionY.get(k)){
-					if(k<snakePositionX.size()-1) {
-						k++;
-					}
-					else {
-						nextPart = false;
-					}
-					tableau[i][j] = ligne;
-					ligne.add("o");
-					
-					writeSnake = false;
+				else if(i==oeufX && j==oeufY) {
+					tableau[i][j] = 'X';
 				}
-				else if(oeufX == i && oeufY == j) {
-					tableau[i][j] = ligne;
-					ligne.add("*");
+				else if(i==bonusX && j==bonusY) {
+					tableau[i][j] = '@';
 				}
-				else {
-					tableau[i][j] = ligne;
-					ligne.add(" ");
-				}
-				
-				if(j==sizeTableau) {
-					System.out.println(tableau[i][j]);
-				}
+				System.out.printf("%c ",tableau[i][j]);
 			}
+			System.out.printf("%n");
 		}
-
 	}
 }
