@@ -292,7 +292,7 @@ public class snakePro_test extends JPanel{
     	boolean positionAvailable = false;
     		while(!positionAvailable){
         		bonus.x =  rand.nextInt(12);
-        		bonus.y =  rand.nextInt(13) + 1;//------------------------------------------------------
+        		bonus.y =  rand.nextInt(12) + 1;//------------------------------------------------------
         		positionAvailable = true;
                 for(PartieSerpent p : snake) {
                     if(p.x == bonus.x && p.y == bonus.y) {
