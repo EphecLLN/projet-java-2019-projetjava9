@@ -22,12 +22,12 @@ public class AffichageConsole {
 			snakePositionX.add(p.x+1);
 			snakePositionY.add(p.y);
 		}
-		for(int i=0; i<=sizeTableau; i++) {
+		for(int i=0; i<sizeTableau; i++) {
 			if(snakePositionX.size()>0) {
 				writeSnake = true;
 			}
 			for(int j=0; j<=sizeTableau; j++) {
-				if(i==0 || i==sizeTableau || j==0 || j==sizeTableau) {
+				if(i==0 || i==sizeTableau-1 || j==0 || j==sizeTableau) {
 					tableau[i][j] = '#';
 				}
 				
