@@ -271,7 +271,7 @@ public class snakePro_test extends JPanel{
             this.x = x;
             this.y = y;
             this.direction = direction;
-            affichageConsole(x+1, y, direction, oeuf.x+1, oeuf.y, bonus.x, bonus.y);
+            affichageConsole(oeuf.x+1, oeuf.y, bonus.x, bonus.y);
         }
        
         public void move(){
@@ -321,41 +321,5 @@ public class snakePro_test extends JPanel{
         protected Object clone() throws CloneNotSupportedException {
             return new PartieSerpent(x, y, direction);
         }
-        
     } 
-    
-    /*public void affichageConsole(int x, int y, int direction){
-        String directionSnake;
-        switch(direction){
-            case (37):
-                directionSnake = "à gauche";
-                break;
-            case (38):
-                directionSnake = "en haut";
-                break;
-            case (39):
-                directionSnake = "droite";
-                break;
-            case (40):
-                directionSnake = "en bas";
-                break;
-            default:
-            	directionSnake = "Somewhere";
-                break; 
-        }
-       
-        if(refresh == 0){
-        	refresh = offsetIncrementValue*3;
-            if(eggEaten) {
-                System.out.format("/o/ OEUF MANGÉ EN (x : %d; y : %d) \\o\\ %n" , x, y+1);
-                eggEaten = false;
-            }
-            System.out.format("score: "+score+"%n");
-            System.out.format("Position du serpent (x : %d; y : %d)%n", x, y+1);
-            System.out.format("Position de l'oeuf (x : %d; y : %d)%n", oeuf.x, oeuf.y+1);
-            System.out.println("Le serpent va "+ directionSnake + "\n-----------------------------------");            
-        }
-        refresh--;
-    }*/
- 
 }
