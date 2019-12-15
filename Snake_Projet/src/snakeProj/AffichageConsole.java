@@ -47,7 +47,7 @@ public class AffichageConsole {
 				else if(i==oeufX && j==oeufY) {
 					tableau[i][j] = 'X';
 				}
-				else if(i==bonusX && j==bonusY) {
+				else if(j==bonusX && i==bonusY) {
 					tableau[i][j] = '@';
 				}
 				System.out.printf("%c ",tableau[i][j]);
