@@ -51,13 +51,12 @@ public class snakePro_test extends JPanel{
     private int offsetIncrementValueBonus = 10;
     public int comparateur = 1;
    
-
     
     public static void main(String[] args) {
     	creerOeuf egg = new creerOeuf();
     	egg.creerOeuf();
     	
-    	//FenÃªtre
+    	//Fenêtre
         JFrame frame = new JFrame("Snake Un Jeu");
         JPanel panel = new snakePro_test();
         
@@ -79,7 +78,6 @@ public class snakePro_test extends JPanel{
             }
         });
         
-       
         //BarreDeMenu
         frame.setContentPane(panel);
         panel.setLayout(null);
@@ -242,7 +240,8 @@ public class snakePro_test extends JPanel{
 	        if(score % 10 == 1 && score != 1) {
 	        	objet.setColor(Color.GREEN);
 	            objet.setColor(Color.BLUE);
-	            objet.drawString("Les murs sont actifs", 180, 300);	
+	            objet.setFont(new Font("Arial", 25, 25));
+	            objet.drawString("Les murs sont actifs", 130, 300);	
 	        }
         }
     	else {
@@ -258,11 +257,34 @@ public class snakePro_test extends JPanel{
                 return;
             }
     		else {
-    			objet.setColor(Color.orange);
+    			objet.setColor(Color.GREEN);
         		objet.setFont(new Font("Arial", 40, 40));
         		objet.drawString("Snake Un Jeu", 110, 5*25);
-    		}
-    		
+        		
+        		objet.setColor(Color.black);
+        		objet.setFont(new Font("Arial", 20, 20));
+        		objet.drawString("Règles :", 5, 8*25);	
+        		
+        		objet.setColor(Color.black);
+        		objet.setFont(new Font("Arial", 14, 14));
+        		objet.drawString("- Manger un maximum d'oeufs.", 5, 9*25);	
+        		
+        		objet.setColor(Color.black);
+        		objet.setFont(new Font("Arial", 14, 14));
+        		objet.drawString("- Ne pas s'auto-manger ou se cogner aux murs s'ils sont actifs.", 5, 10*25);	
+        		
+        		objet.setColor(Color.black);
+        		objet.setFont(new Font("Arial", 14, 14));
+        		objet.drawString("- Attention au malus invisible qui boost la vitesse. ", 5, 11*25);	
+        		
+        		objet.setColor(Color.black);
+        		objet.setFont(new Font("Arial", 14, 14));
+        		objet.drawString("- Tout les 10 oeufs mangés, les murs s'activent jusqu'au prochain oeuf.", 5, 12*25);
+        		
+        		objet.setColor(Color.GREEN);
+        		objet.setFont(new Font("Arial", 25, 25));
+        		objet.drawString("BONNE CHANCE JEUNE SERPENT", 35, 17*25);
+    		}	
     	}	
     }
     
