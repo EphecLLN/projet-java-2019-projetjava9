@@ -10,46 +10,41 @@ import java.util.Deque;
 public class AffichageConsole {
 	
 	public Deque<PartieSerpent> snake = snakeProj.snakePro_test.snake;
-	public void affichageConsole(int y, int x, int direction, int oeufY, int oeufX, int bonusX, int bonusY){
-		int sizeTableau = 20;
-		@SuppressWarnings("unchecked")
-		char [][] tableau = new char[sizeTableau+2][sizeTableau+2];
+	private int sizeTableau = 20;
+	public char [][] tableau = new char[sizeTableau+2][sizeTableau+2];
+	
+	public void affichageConsole(int oeufY, int oeufX, int bonusX, int bonusY){
+		ArrayList<Integer> snakePositionX = new ArrayList<Integer>();
+		ArrayList<Integer> snakePositionY = new ArrayList<Integer>();
 		boolean writeSnake = false;
-		int k;
-		boolean nextPart = true;
 		
-		
-		switch(direction) {
-			case 37: //fleche de gauche
-				y = y==1 ? sizeTableau : --y;
-				break;
-			case 38: //fleche du haut
-				x = x==1 ? sizeTableau : --x;
-				break;
-			case 39: //fleche de droite
-				y = y==sizeTableau ? 1 : ++y;
-				break;
-			case 40: //fleche du bas
-				x = x==sizeTableau ? 1 : ++x;
-				break;
-		}
 		for(PartieSerpent p : snake) {
-			System.out.println(p);
+			snakePositionX.add(p.x+1);
+			snakePositionY.add(p.y);
 		}
-		k=0;
 		for(int i=0; i<=sizeTableau; i++) {
+			if(snakePositionX.size()>0) {
+				writeSnake = true;
+			}
 			for(int j=0; j<=sizeTableau; j++) {
 				if(i==0 || i==sizeTableau || j==0 || j==sizeTableau) {
 					tableau[i][j] = '#';
 				}
-				else if(x==i && y==j) {
-					tableau[i][j] = 'o';
-				}
+				
 				else if(i==oeufX && j==oeufY) {
 					tableau[i][j] = 'X';
 				}
 				else if(j==bonusX && i==bonusY) {
 					tableau[i][j] = '@';
+				}
+				else if(writeSnake) {
+					for(int k=0; k<snakePositionX.size(); k++) {
+						if(snakePositionX.get(k)==j && snakePositionY.get(k)==i) {
+							tableau[i][j] = 'o';
+							snakePositionX.remove(k);
+							snakePositionY.remove(k);
+						}
+					}
 				}
 				System.out.printf("%c ",tableau[i][j]);
 			}
