@@ -100,8 +100,8 @@ public class snakePro_test extends JPanel{
         // Add the options of the menu bar
         JMenuItem NewGame = new JMenuItem("Nouvelle Partie");
         JMenuItem ActiverMurs = new JMenuItem("Activer les murs");
-        JMenuItem DesactiverMurs = new JMenuItem("DÃ©sactiver les murs");
-        JMenuItem Regles = new JMenuItem("RÃ¨gles");
+        JMenuItem DesactiverMurs = new JMenuItem("Désactiver les murs");
+        JMenuItem Regles = new JMenuItem("Règles");
         JMenuItem Vert = new JMenuItem("Serpent vert");
         JMenuItem Orange = new JMenuItem("Serpent orange");
         JMenuItem Blanc = new JMenuItem("Serpent blanc");
@@ -363,11 +363,7 @@ public class snakePro_test extends JPanel{
                 if(regleur == 1){
                 objet.setColor(Color.black);
                 objet.setFont(new Font("Arial", 20, 20));
-<<<<<<< HEAD
                 objet.drawString("Règles :", 5, 8*WIDTH);   
-=======
-                objet.drawString("RÃ¨gles :", 5, 8*WIDTH);   
->>>>>>> master
                 
                 objet.setColor(Color.black);
                 objet.setFont(new Font("Arial", 14, 14));
@@ -383,11 +379,7 @@ public class snakePro_test extends JPanel{
                 
                 objet.setColor(Color.black);
                 objet.setFont(new Font("Arial", 14, 14));
-<<<<<<< HEAD
                 objet.drawString("- Tout les 10 oeufs mangés, les murs s'activent jusqu'au prochain oeuf.", 5, 12*WIDTH);
-=======
-                objet.drawString("- Tout les 10 oeufs mangÃ©s, les murs s'activent jusqu'au prochain oeuf.", 5, 12*WIDTH);
->>>>>>> master
                 
                 }
 
