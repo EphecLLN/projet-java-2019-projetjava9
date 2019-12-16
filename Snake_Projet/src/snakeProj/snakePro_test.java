@@ -179,17 +179,18 @@ public class snakePro_test extends JPanel{
 	                // Extends the snake's length when an egg is eaten
 	                if(head.x == oeuf.x && head.y == oeuf.y) {
 	                	mursActifs = false;
-	                    Croissance = true;
-	                    eggEaten = true;
-	                    creerOeuf egg = new creerOeuf();
-	                    egg.creerOeuf();
-	                    BoostVitesse++;
-	                    offsetIncrementValue = 5;
-	                    if(BoostVitesse == 7) {
-	                    	creerBonus();
-	                    	BoostVitesse = 0;
+	                	Croissance = true;
+	                	eggEaten = true;
+	                	creerOeuf egg = new creerOeuf();
+	                	egg.creerOeuf();
+	                	BoostVitesse++;
+	                	offsetIncrementValue = 5;
+			 	// Creates the bonus every 7 eggs eaten
+	                 	if(BoostVitesse == 7) {
+	                    		creerBonus();
+	                    		BoostVitesse = 0;
 	                    }
-	                    score++;  
+	                	score++;  
 	                }
 	                /* Deletes the last part of the snake when no
 	                 *     eggs are eaten, so the snake conserves
@@ -213,10 +214,12 @@ public class snakePro_test extends JPanel{
 	                // TODO Auto-generated catch block
 	                e.printStackTrace();
 	            }
-	        } 
+	        }
+		// Change the color of the egg to warn the activation of the walls
 	        if(score % 10 == 0.00 && score != 0) {
 	        	objet.setColor(Color.RED);
 	        }
+		// Colors the egg
 	        else if(score % 10 != 0.00 || score == 0) {
 	        objet.setColor(Color.YELLOW);
 	        }
@@ -243,7 +246,9 @@ public class snakePro_test extends JPanel{
 	        // Check if the snake eats itself
 	        for(PartieSerpent p : snake) {
 	            if(offset == 0) {
+			// Don't check if the head collides itself
 	                if(p != head) {
+			    // Check if the head collides with a part of the snake's body
 	                    if(p.x == head.x && p.y == head.y) {
 	                        gameLost = 1;
 	                        debutPartie = 0;
@@ -263,7 +268,8 @@ public class snakePro_test extends JPanel{
 	        // Writes the score in the top left corner in the game
 	        objet.setColor(Color.BLUE);
 	        objet.drawString("Score : " + score, 9, 45);
-	        
+
+	        // Writes the warning of the activation of the walls
 	        if(score % 10 == 1 && score != 1) {
 	            objet.setColor(Color.BLUE);
 	            objet.setFont(new Font("Arial", 25, 25));
@@ -289,7 +295,7 @@ public class snakePro_test extends JPanel{
                 return;
             }
 
-    		// Displays the rules of the game
+    		// Displays the rules and the introduction of the game
     		else {
     			objet.setColor(Color.GREEN.darker());
         		objet.setFont(new Font("Arial", 40, 40));
@@ -328,16 +334,16 @@ public class snakePro_test extends JPanel{
     public void creerBonus() {
     	boolean positionAvailable = false;
 		while(!positionAvailable){
-    		bonus.x = rand.nextInt(12);
-    		bonus.y = rand.nextInt(13) + 1;
-    		positionAvailable = true;
+			bonus.x = rand.nextInt(12);
+			bonus.y = rand.nextInt(13) + 1;
+			positionAvailable = true;
             for(PartieSerpent p : snake) {
                 if(p.x == bonus.x && p.y == bonus.y) {
                         positionAvailable = false;
                         break;
                 }
             }
-		}
+	}
     }
 
     /**
