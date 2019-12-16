@@ -101,14 +101,10 @@ public class snakePro_test extends JPanel{
         JMenuItem NewGame = new JMenuItem("Nouvelle Partie");
         JMenuItem ActiverMurs = new JMenuItem("Activer les murs");
         JMenuItem DesactiverMurs = new JMenuItem("Désactiver les murs");
-        JMenuItem GrandeFen = new JMenuItem("Grande Fenêtre");
-        JMenuItem PetiteFen = new JMenuItem("Petite Fenêtre");
         JMenuItem Regles = new JMenuItem("Règles");
         JMenuItem Vert = new JMenuItem("Serpent vert");
         JMenuItem Orange = new JMenuItem("Serpent orange");
         JMenuItem Blanc = new JMenuItem("Serpent blanc");
-        Options.add(GrandeFen);
-        Options.add(PetiteFen);
         Options.add(ActiverMurs);
         Options.add(DesactiverMurs);
         Commencer.add(NewGame);
@@ -129,18 +125,6 @@ public class snakePro_test extends JPanel{
         	}
         });
         
-        GrandeFen.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		WIDTH = 50;
-        	}
-        });
-        
-        PetiteFen.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		WIDTH = 25;
-        	}
-        });
-        
         NewGame.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {
 	        	debutPartie = 1;
@@ -156,25 +140,31 @@ public class snakePro_test extends JPanel{
         
         Vert.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {
-				vert = 1;
-				orange = 0;
-				blanc = 0;
+				if(debutPartie == 0) {
+					vert = 1;
+					orange = 0;
+					blanc = 0;
+				}
 	        }	
 		});
         
         Orange.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {
-				vert = 0;
-				orange = 1;
-				blanc = 0;
+				if(debutPartie == 0) {
+					vert = 0;
+					orange = 1;
+					blanc = 0;
+				}
 	        }	
 		});
         
         Blanc.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {
-				vert = 0;
-				orange = 0;
-				blanc = 1;
+				if(debutPartie == 0) {
+					vert = 0;
+					orange = 0;
+					blanc = 1;
+				}
 	        }	
 		});
         
