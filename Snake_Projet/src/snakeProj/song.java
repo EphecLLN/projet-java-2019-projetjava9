@@ -1,6 +1,7 @@
 package snakeProj;
 
 import java.io.IOException;
+
 import java.net.URL;
 
 import javax.sound.sampled.AudioInputStream;
@@ -11,12 +12,11 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import sun.applet.Main;
 
  
  
 public class song
-{
+{/*
 	public static Mixer mixer;
 	public static Clip clip; 
 	
@@ -28,6 +28,7 @@ public class song
     		System.out.println(info.getName() + "---" + info.getDescription());
     	}
     	*/
+	/*
     	mixer= AudioSystem.getMixer(mixInfos[0]);
     	
     	DataLine.Info dataInfo = new DataLine.Info(Clip.class,  null);
@@ -51,5 +52,5 @@ public class song
     	}while(clip.isActive());
     }
 
-
+*/
 }

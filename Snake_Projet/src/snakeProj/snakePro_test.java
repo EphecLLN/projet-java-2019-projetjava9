@@ -50,6 +50,10 @@ public class snakePro_test extends JPanel{
     public int BonusOeuf = 0;
     private int offsetIncrementValueBonus = 10;
     public int comparateur = 1;
+    public static int regleur = 0;
+    public static int vert = 1;
+    public static int blanc = 0;
+    public static int orange = 0;
    
     
     public static void main(String[] args) {
@@ -88,16 +92,32 @@ public class snakePro_test extends JPanel{
         BarreDeMenu.setBounds(0, 0, 20*WIDTH, WIDTH);
         JMenu Commencer = new JMenu("Commencer");
         JMenu Options = new JMenu("Options");
+        JMenu Style = new JMenu("Couleur Serpent");
         BarreDeMenu.add(Commencer);
-        BarreDeMenu.add(Options);
+        BarreDeMenu.add(Style);
+        BarreDeMenu.add(Options);        
         
         // Add the options of the menu bar
         JMenuItem NewGame = new JMenuItem("Nouvelle Partie");
         JMenuItem ActiverMurs = new JMenuItem("Activer les murs");
-        JMenuItem DesactiverMurs = new JMenuItem("DÃ©sactiver les murs");
+        JMenuItem DesactiverMurs = new JMenuItem("Désactiver les murs");
+        JMenuItem GrandeFen = new JMenuItem("Grande Fenêtre");
+        JMenuItem PetiteFen = new JMenuItem("Petite Fenêtre");
+        JMenuItem Regles = new JMenuItem("Règles");
+        JMenuItem Vert = new JMenuItem("Serpent vert");
+        JMenuItem Orange = new JMenuItem("Serpent orange");
+        JMenuItem Blanc = new JMenuItem("Serpent blanc");
+        Options.add(GrandeFen);
+        Options.add(PetiteFen);
         Options.add(ActiverMurs);
         Options.add(DesactiverMurs);
         Commencer.add(NewGame);
+        Commencer.add(Regles);
+        Style.add(Vert);
+        Style.add(Orange);
+        Style.add(Blanc);
+        
+        
         ActiverMurs.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		mursActifs = true;
@@ -109,11 +129,53 @@ public class snakePro_test extends JPanel{
         	}
         });
         
+        GrandeFen.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		WIDTH = 50;
+        	}
+        });
+        
+        PetiteFen.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		WIDTH = 25;
+        	}
+        });
+        
         NewGame.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {
 	        	debutPartie = 1;
 	        }
 			
+		});
+        
+        Regles.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {
+				regleur = 1;
+	        }	
+		});
+        
+        Vert.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {
+				vert = 1;
+				orange = 0;
+				blanc = 0;
+	        }	
+		});
+        
+        Orange.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {
+				vert = 0;
+				orange = 1;
+				blanc = 0;
+	        }	
+		});
+        
+        Blanc.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {
+				vert = 0;
+				orange = 0;
+				blanc = 1;
+	        }	
 		});
         
         // Set the parameters of the window
@@ -241,8 +303,15 @@ public class snakePro_test extends JPanel{
 	        else if(score>30 && snake.size() < 40) {
 	        	setBackground(Color.BLACK);
 	        }
-	        objet.setColor(Color.GREEN);
-
+	        if(vert == 1) {
+	        	objet.setColor(Color.GREEN);
+	        }
+	        else if(orange == 1) {
+	        	objet.setColor(Color.orange);
+	        }
+	        else if(blanc == 1){
+	        	objet.setColor(Color.white);
+	        }
 	        // Check if the snake eats itself
 	        for(PartieSerpent p : snake) {
 	            if(offset == 0) {
@@ -256,7 +325,7 @@ public class snakePro_test extends JPanel{
 	                }
 	            }
 
-	            // Colors the snake
+	            // Fill the snake
 	            if(p.direction == 37 || p.direction == 39) {
 	                objet.fillRect(p.x * WIDTH + ((p.direction == 37) ? -offset : offset), p.y*WIDTH, WIDTH, WIDTH);
 	            } 
@@ -272,7 +341,7 @@ public class snakePro_test extends JPanel{
 	        // Writes the warning of the activation of the walls
 	        if(score % 10 == 1 && score != 1) {
 	            objet.setColor(Color.BLUE);
-	            objet.setFont(new Font("Arial", 25, 25));
+	            objet.setFont(new Font("Arial", WIDTH, WIDTH));
 	            objet.drawString("Les murs sont actifs", 130, 300);	
 	        }
         }
@@ -281,7 +350,7 @@ public class snakePro_test extends JPanel{
     		if(gameLost>0) {
                 objet.setColor(Color.RED);
                 objet.setFont(new Font("Arial", 40, 40));
-                objet.drawString("GAME OVER", 110, 9*25);
+                objet.drawString("GAME OVER", 110, 9*WIDTH);
 
                 /* Writes the game over in the command line and send
                  *     the score and player's name to the database
@@ -299,31 +368,34 @@ public class snakePro_test extends JPanel{
     		else {
     			objet.setColor(Color.GREEN.darker());
         		objet.setFont(new Font("Arial", 40, 40));
-        		objet.drawString("Snake Un Jeu", 110, 5*25);
+        		objet.drawString("Snake Un Jeu", 110, 5*WIDTH);
         		
+        		if(regleur == 1){
         		objet.setColor(Color.black);
         		objet.setFont(new Font("Arial", 20, 20));
-        		objet.drawString("RÃ¨gles :", 5, 8*25);	
+        		objet.drawString("Règles :", 5, 8*WIDTH);	
         		
         		objet.setColor(Color.black);
         		objet.setFont(new Font("Arial", 14, 14));
-        		objet.drawString("- Manger un maximum d'oeufs.", 5, 9*25);	
+        		objet.drawString("- Manger un maximum d'oeufs.", 5, 9*WIDTH);	
         		
         		objet.setColor(Color.black);
         		objet.setFont(new Font("Arial", 14, 14));
-        		objet.drawString("- Ne pas s'auto-manger ou se cogner aux murs s'ils sont actifs.", 5, 10*25);	
+        		objet.drawString("- Ne pas s'auto-manger ou se cogner aux murs s'ils sont actifs.", 5, 10*WIDTH);	
         		
         		objet.setColor(Color.black);
         		objet.setFont(new Font("Arial", 14, 14));
-        		objet.drawString("- Attention au malus invisible qui boost la vitesse. ", 5, 11*25);	
+        		objet.drawString("- Attention au malus invisible qui boost la vitesse. ", 5, 11*WIDTH);	
         		
         		objet.setColor(Color.black);
         		objet.setFont(new Font("Arial", 14, 14));
-        		objet.drawString("- Tout les 10 oeufs mangÃ©s, les murs s'activent jusqu'au prochain oeuf.", 5, 12*25);
+        		objet.drawString("- Tout les 10 oeufs mangés, les murs s'activent jusqu'au prochain oeuf.", 5, 12*WIDTH);
         		
+        		}
+
         		objet.setColor(Color.GREEN.darker());
-        		objet.setFont(new Font("Arial", 25, 25));
-        		objet.drawString("BONNE CHANCE JEUNE SERPENT", 35, 17*25);
+        		objet.setFont(new Font("Arial", WIDTH, WIDTH));
+        		objet.drawString("BONNE CHANCE JEUNE SERPENT", 35, 17*WIDTH);
     		}	
     	}	
     }
