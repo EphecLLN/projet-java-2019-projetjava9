@@ -36,7 +36,7 @@ public class snakePro_test extends JPanel{
     public boolean eggEaten = false;
     public static int gameLost = 0;
     public int offset = 0;
-    public int offsetIncrementValue = 5;
+    public static int offsetIncrementValue = 5;
     public int refresh = 0;
     public int newDirection = 39;
     public static boolean mursActifs = false;
@@ -48,12 +48,14 @@ public class snakePro_test extends JPanel{
     private Point bonus = new Point(0, 0);
     public int BoostVitesse = 0;
     public int BonusOeuf = 0;
-    private int offsetIncrementValueBonus = 10;
+    private int offsetIncrementValueBonus = 5;
+    public static int offsetIncrementBasique = 5;
     public int comparateur = 1;
     public static int regleur = 0;
     public static int vert = 1;
     public static int blanc = 0;
     public static int orange = 0;
+    public static int mursAide = 0;
    
     
     public static void main(String[] args) {
@@ -93,7 +95,9 @@ public class snakePro_test extends JPanel{
         JMenu Commencer = new JMenu("Commencer");
         JMenu Options = new JMenu("Options");
         JMenu Style = new JMenu("Couleur Serpent");
+        JMenu Vitesse = new JMenu("Vitesse de jeu");
         BarreDeMenu.add(Commencer);
+        BarreDeMenu.add(Vitesse);
         BarreDeMenu.add(Style);
         BarreDeMenu.add(Options);        
         
@@ -105,10 +109,17 @@ public class snakePro_test extends JPanel{
         JMenuItem Vert = new JMenuItem("Serpent vert");
         JMenuItem Orange = new JMenuItem("Serpent orange");
         JMenuItem Blanc = new JMenuItem("Serpent blanc");
+        JMenuItem Vitesse1 = new JMenuItem("Vitesse lente");
+        JMenuItem Vitesse2 = new JMenuItem("Vitesse normale");
+        JMenuItem Vitesse3 = new JMenuItem("Vitesse rapide");
+        
         Options.add(ActiverMurs);
         Options.add(DesactiverMurs);
         Commencer.add(NewGame);
         Commencer.add(Regles);
+        Vitesse.add(Vitesse1);
+        Vitesse.add(Vitesse2);
+        Vitesse.add(Vitesse3);
         Style.add(Vert);
         Style.add(Orange);
         Style.add(Blanc);
@@ -117,11 +128,13 @@ public class snakePro_test extends JPanel{
         ActiverMurs.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 mursActifs = true;
+                mursAide = 1;
             }
         });
         DesactiverMurs.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 mursActifs = false;
+                mursAide = 0;
             }
         });
         
@@ -166,6 +179,33 @@ public class snakePro_test extends JPanel{
                     blanc = 1;
                 }
             }   
+        });
+        
+        Vitesse1.addActionListener(new ActionListener() {            
+            public void actionPerformed(ActionEvent e) {
+            	if(debutPartie == 0) {
+	            	offsetIncrementBasique = 3;
+	            	offsetIncrementValue = 3;
+            	}
+            }  
+        });
+        
+        Vitesse2.addActionListener(new ActionListener() {            
+            public void actionPerformed(ActionEvent e) {
+            	if(debutPartie == 0) {
+	            	offsetIncrementBasique = 5;
+	            	offsetIncrementValue = 5;
+            	}
+            }  
+        });
+        
+        Vitesse3.addActionListener(new ActionListener() {            
+            public void actionPerformed(ActionEvent e) {
+            	if(debutPartie == 0) {
+	            	offsetIncrementBasique = 7;
+	            	offsetIncrementValue = 7;
+            	}
+            }  
         });
         
         // Set the parameters of the window
@@ -230,13 +270,15 @@ public class snakePro_test extends JPanel{
                     
                     // Extends the snake's length when an egg is eaten
                     if(head.x == oeuf.x && head.y == oeuf.y) {
-                        mursActifs = false;
+                    	if(mursAide == 0) {
+                    		mursActifs = false;
+                    	}
                         Croissance = true;
                         eggEaten = true;
                         creerOeuf egg = new creerOeuf();
                         egg.creerOeuf();
                         BoostVitesse++;
-                        offsetIncrementValue = 5;
+                        offsetIncrementValue = offsetIncrementBasique;
                 // Creates the bonus every 7 eggs eaten
                         if(BoostVitesse == 7) {
                                 creerBonus();
@@ -258,7 +300,7 @@ public class snakePro_test extends JPanel{
                     // Adds some speed to the snake when the bonus/malus is eaten
                     if(head.x == bonus.x && head.y == bonus.y) {
                         bonus = new Point(0, 0);
-                        offsetIncrementValue = offsetIncrementValueBonus;
+                        offsetIncrementValue += offsetIncrementValueBonus;
                     }
                 }
                 // Catch the error if a clone fails
@@ -329,10 +371,12 @@ public class snakePro_test extends JPanel{
             objet.drawString("Score : " + score, 9, 45);
 
             // Writes the warning of the activation of the walls
-            if(score % 10 == 1 && score != 1) {
-                objet.setColor(Color.BLUE);
-                objet.setFont(new Font("Arial", WIDTH, WIDTH));
-                objet.drawString("Les murs sont actifs", 130, 300); 
+            if(mursActifs == true && mursAide == 0) {
+	            if(score % 10 == 1 && score != 1) {
+	                objet.setColor(Color.BLUE);
+	                objet.setFont(new Font("Arial", WIDTH, WIDTH));
+	                objet.drawString("Les murs sont actifs", 130, 300); 
+	            }
             }
         }
         else {
