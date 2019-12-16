@@ -41,7 +41,7 @@ public class connectToGame {
 	 */
 	public void dataSend() {
 	    try {  	
-	    	String query ="insert into savescore(id_player,score_player)Values('\"+idPlayer+\"',\"+score+\")";
+	    	String query ="insert into savescore(id_player,score_player)Values('"+idPlayer+"',"+score+")";
 	    	rs = st.executeQuery(query);
 	    	System.out.println(rs);
 	    } catch (Exception e) {}
