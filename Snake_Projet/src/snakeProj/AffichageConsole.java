@@ -2,8 +2,6 @@ package snakeProj;
 
 import java.util.ArrayList;
 import snakeProj.snakePro_test.PartieSerpent;
-import snakeProj.snakePro_test;
-import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**

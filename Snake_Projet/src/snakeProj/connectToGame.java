@@ -1,10 +1,8 @@
 package snakeProj;
 
-import java.awt.Point;
+
 
 import java.sql.*;
-import snakeProj.snakePro_test;
-import snakeProj.pseudoPlayer;
 
 /**
  * The class connectToGame sends the data of the game in the database

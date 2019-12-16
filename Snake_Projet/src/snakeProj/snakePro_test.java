@@ -18,7 +18,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import snakeProj.creerOeuf;
-import snakeProj.snakePro_test.PartieSerpent;
 
 
 /**
@@ -36,27 +35,27 @@ public class snakePro_test extends JPanel{
     public boolean Croissance = false;
     public boolean eggEaten = false;
     public static int gameLost = 0;
-    public int offset = 0;
-    public static int offsetIncrementValue = 5;
+    private int offset = 0;
+    private static int offsetIncrementValue = 5;
     public int refresh = 0;
     public int newDirection = 39;
-    public static boolean mursActifs = false;
+    private static boolean mursActifs = false;
     public static int debutPartie = 0;
     public static int score = 0;
     public boolean reset = false;
     public JPanel panel;
     public int compteurOff = 1;
     private Point bonus = new Point(0, 0);
-    public int BoostVitesse = 0;
+    private int BoostVitesse = 0;
     public int BonusOeuf = 0;
     private int offsetIncrementValueBonus = 5;
-    public static int offsetIncrementBasique = 5;
+    private static int offsetIncrementBasique = 5;
     public int comparateur = 1;
-    public static int regleur = 0;
-    public static int vert = 1;
-    public static int blanc = 0;
-    public static int orange = 0;
-    public static int mursAide = 0;
+    private static int regleur = 0;
+    private static int vert = 1;
+    private static int blanc = 0;
+    private static int orange = 0;
+    private static int mursAide = 0;
    
     
     public static void main(String[] args) {

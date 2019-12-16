@@ -5,7 +5,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Random;
 import snakeProj.snakePro_test.PartieSerpent;
-import snakeProj.snakePro_test;
+
 
 /**
  * The class creerOeuf is a class that creates an egg in an available place on the game platform
@@ -24,9 +24,9 @@ public class creerOeuf {
     public void creerOeuf() {
         boolean positionAvailable = false;
         while(!positionAvailable){
-            oeuf.x = rand.nextInt(12);
+            oeuf.x = rand.nextInt(17);
             //Y axis has a random that begins at 1 so it doesn't spawn in the menu bar
-            oeuf.y = rand.nextInt(12)+1;
+            oeuf.y = rand.nextInt(17)+1;
             positionAvailable = true;
             for(PartieSerpent p : snake) {
                 if(p.x == oeuf.x && p.y == oeuf.y) {

@@ -1,13 +1,12 @@
 package snakeProj;
 import java.awt.BorderLayout;
+
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +17,10 @@ import javax.swing.JTextField;
  * The class pseudoPlayer allows to get the name of a player with a graphic interface
  */
 public class pseudoPlayer extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel container = new JPanel();
 	private JTextField jtf = new JTextField();
 	private JLabel label = new JLabel("Nom du Joueur");
@@ -25,7 +28,6 @@ public class pseudoPlayer extends JFrame {
 	private JButton boutonAnnuler = new JButton ("Annuler");
 	public static String idPlayer="user";
 	private int score= snakeProj.snakePro_test.score;
-	private int debutPartie= snakeProj.snakePro_test.debutPartie;
 	private JLabel scorePartie = new JLabel("Score de la partie :");
 	private JLabel bestScore = new JLabel(""+score);
 
