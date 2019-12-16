@@ -1,6 +1,7 @@
 package snakeProj;
  
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -21,7 +22,7 @@ import snakeProj.snakePro_test.PartieSerpent;
 
 
 /**
- * The class snakePro_test contains the logic of the snake game.
+ * The class Snake contains the logic of the snake game.
  * It also contains the graphic part.
  */
 public class snakePro_test extends JPanel{
@@ -124,20 +125,25 @@ public class snakePro_test extends JPanel{
         Style.add(Orange);
         Style.add(Blanc);
         
-        
+        //Wall 
         ActiverMurs.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mursActifs = true;
-                mursAide = 1;
+            	if(debutPartie == 0) {
+	               mursActifs = true;
+	               mursAide = 1;
+            	}
             }
         });
         DesactiverMurs.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mursActifs = false;
-                mursAide = 0;
+            	if(debutPartie == 0) {
+	                mursActifs = false;
+	                mursAide = 0;
+            	}
             }
         });
         
+        //Start Game
         NewGame.addActionListener(new ActionListener() {            
             public void actionPerformed(ActionEvent e) {
                 debutPartie = 1;
@@ -145,12 +151,14 @@ public class snakePro_test extends JPanel{
             
         });
         
+        //Show rules
         Regles.addActionListener(new ActionListener() {         
             public void actionPerformed(ActionEvent e) {
                 regleur = 1;
             }   
         });
         
+        //Snake Colors
         Vert.addActionListener(new ActionListener() {           
             public void actionPerformed(ActionEvent e) {
                 if(debutPartie == 0) {
@@ -181,6 +189,7 @@ public class snakePro_test extends JPanel{
             }   
         });
         
+        //Snake Speed
         Vitesse1.addActionListener(new ActionListener() {            
             public void actionPerformed(ActionEvent e) {
             	if(debutPartie == 0) {
@@ -217,7 +226,7 @@ public class snakePro_test extends JPanel{
     }
 
     /**
-     * The method snakePro_test runs the snake game
+     * The method Snake runs the snake game
      */
     public snakePro_test() {
         snake.add(new PartieSerpent(3, 3, 39));  
