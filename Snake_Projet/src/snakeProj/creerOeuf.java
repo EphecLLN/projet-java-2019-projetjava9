@@ -24,9 +24,9 @@ public class creerOeuf {
     public void creerOeuf() {
         boolean positionAvailable = false;
         while(!positionAvailable){
-            oeuf.x = rand.nextInt(12);
+            oeuf.x = rand.nextInt(17);
             //Y axis has a random that begins at 1 so it doesn't spawn in the menu bar
-            oeuf.y = rand.nextInt(12)+1;
+            oeuf.y = rand.nextInt(17)+1;
             positionAvailable = true;
             for(PartieSerpent p : snake) {
                 if(p.x == oeuf.x && p.y == oeuf.y) {
