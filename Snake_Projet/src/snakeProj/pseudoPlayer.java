@@ -106,9 +106,7 @@ public class pseudoPlayer extends JFrame {
 	 */
 	class BoutonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-		String idPlayer2 = jtf.getText();  
-		System.out.println(idPlayer2);
-		System.out.println(score);
+		String idPlayer2 = jtf.getText(); 
 		idPlayer = idPlayer2;
 		connectToGame connect = new connectToGame();
 		connect.dataSend();

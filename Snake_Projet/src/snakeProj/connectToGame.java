@@ -40,12 +40,9 @@ public class connectToGame {
 	 * Method that sends the data to the database with the score and the id of the player
 	 */
 	public void dataSend() {
-	    try {
-	        System.out.println("idPlayer dans l'envoie " + idPlayer);
-	        System.out.println("score dans l'envoie " + score);
-	    	String query ="insert into savescore(id_player,score_player)Values('" + idPlayer + "'," + score + ")";
-	    	String query2 ="select * savescore";
-	    	rs = st.executeQuery(query2);
+	    try {  	
+	    	String query ="select * savescore";
+	    	rs = st.executeQuery(query);
 	    	System.out.println(rs);
 	    } catch (Exception e) {}
 	}

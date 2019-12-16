@@ -45,13 +45,7 @@ public class recupScore {
 	    	rs = st.executeQuery(query);
 	    	 //On récupère les MetaData
 	        ResultSetMetaData resultMeta = rs.getMetaData();
-	        System.out.println("\n***************************************************************");
-	        //On affiche le nom des colonnes
-	        for(int i = 1; i <= resultMeta.getColumnCount(); i++)
-	        	System.out.print("\t" + resultMeta.getColumnName(i).toUpperCase() + "\t *");
-	           
-	        System.out.println("\n***************************************************************");
-	           
+	        
 	        while(rs.next()){
 	        	int scoreLect = (int) rs.getObject(2);
 	        	if(scoreLect > scoreMax) {
@@ -75,19 +69,14 @@ public class recupScore {
 	        		top5 = (String) rs.getObject(1);
 	        	}
 	        	
-	          for(int i = 1; i <= resultMeta.getColumnCount(); i++) 
-	            System.out.print("\t" + rs.getObject(i).toString() +"\t |");
-
-	          	
-	          System.out.println("\n------------------------------------------------------------");
-	          
-	        }
+	        }  
 	        System.out.print("\n" + top1 + " score de:" + scoreMax);
 	    	System.out.print("\n" + top2 + " score de:" + scoreMax2);
 	    	System.out.print("\n" + top3 + " score de:" + scoreMax3);
 	    	System.out.print("\n" + top4 + " score de:" + scoreMax4);
 	    	System.out.print("\n" + top5 + " score de:" + scoreMax5);
-
+	         
 	    } catch (Exception e) {}   
 	}
 }
+	
